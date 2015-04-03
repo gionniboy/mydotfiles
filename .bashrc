@@ -1,7 +1,4 @@
 # ~/.bashrc: executed by bash(1) for non-login shells.
-# umask 0077 is chmod 700, change if need. but paranoia by default
-umask 0077
-
 
 # Customize BASH PS1 prompt to show current GIT repository and branch.
 # Bunch-o-predefined colors. Makes reading code easier than escape sequences.

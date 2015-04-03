@@ -6,6 +6,7 @@
 
 # the default umask is set in /etc/profile; for setting the umask
 # for ssh logins, install and configure the libpam-umask package.
+# umask 0077 is chmod 700, change if need. but paranoia by default
 umask 0077
 
 # if running bash
