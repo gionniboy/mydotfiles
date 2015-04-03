@@ -1,0 +1,57 @@
+# Compiled source
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.out
+*.so
+
+# Packages
+*.7z
+*.dmg
+*.gz
+*.tar
+*.deb
+*.rpm
+*.iso
+*.jar
+*.rar
+*.zip
+*.bz2
+*.xz
+
+# Logs and database
+*.log
+*.sql
+*.sqlite
+*.db
+
+# keepassx file
+*.key
+*.kdb
+
+# GPG
+*.gpg
+*.pgp
+
+# OsX Files
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Misc
+*~
+*cache
+*.cache
+*.bak
+*bak
+*.bkp
+*.old
+*bkp
+*old
+*.patch
+*.diff

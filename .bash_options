@@ -1,0 +1,46 @@
+# See bash(1) for more options
+HISTCONTROL=ignoreboth                                       # like ignoredups:ignorespace
+HISTIGNORE="pwd:ls:ll:la:l:lla:man:clear:exit"               # ignore commands from history
+HISTSIZE=1000
+HISTFILESIZE=2000
+HISTTIMEFORMAT='%F %T '                                         # Timestamp in history
+
+PROMPT_COMMAND='history -a'                     # Avoid history losses when using multiple terminals
+[ "$UID" = 0 ] && export TMOUT=180              # close root shell after N seconds of inactivity
+
+export PAGER="less"                             # Pager
+export EDITOR="vim"                             # editor
+export VISUAL=$EDITOR
+export LESSHISTFILE="-"                         # no less history file
+export LESSCHARSET="utf-8"
+export IGNOREEOF=1                             # ^D twice to exit shell
+
+# Shell Option
+shopt -s dotglob                                # include dotfiles . in the results of filename expansion
+shopt -s histappend                             # append to the history, don't overwrite it
+shopt -s cdspell                                # correct the path on typo errors
+shopt -s dirspell                               # spelling correction on dir names
+shopt -s autocd                                 # $namedir as cd $namedir
+shopt -s checkwinsize                           # check window zise after command and update values
+shopt -s cmdhist                                # multiple-line command in one history entry
+shopt -s hostcomplete                           # tab-completion of hostname after @
+
+#shopt -s checkhash                             # check hash table before execute
+#shopt -s extdebug                              # for use by debuggers
+
+# If set, the pattern "**" used in a pathname expansion context will
+# match all files and zero or more directories and subdirectories.
+#shopt -s globstar
+
+# Some settings
+set -o noclobber                        # prevent overwriting files with cat
+#set -o vi                              # vi editing mode
+#set -o ignoreeof                       # stop ctrl+d from logging out
+#set -o notify                          # don't wait for job term notification
+
+# ulimit settings are per-process
+ulimit -S -c 0                          # no coredumps
+#ulimit -S -f 1024                      # max open files
+#ulimit -S -u 256                       # max user process
+#ulimit -S -s 8192                      # stack size
+#stty -ixon                             # disable flow control
