@@ -11,6 +11,7 @@ alias la='ls -A'
 alias l='ls -CF'
 alias lla='ls -la'
 
+# move fastly
 alias ..='cd ..'
 alias cd2="cd ../.."
 alias cd3="cd ../../.."
@@ -39,10 +40,14 @@ alias openports='sudo netstat -nape --inet'
 alias dirtypage='grep -C 1 dirty /proc/vmstat'
 alias ducks='du -chs * | sort -rn | head -n 11'
 alias totalconn="netstat -nt | awk '/^tcp/ {++state[$NF]} END {for(key in state) print key,"\t",state[key]}'"
+
 alias myip='curl http://myexternalip.com/raw'
 
+# Bash pastebin
 alias sprungeout="curl -F 'sprunge=<-' http://sprunge.us"
+alias aringaout="curl -F 'aringa=<-' arin.ga"
 
+# Archive
 alias mktar='tar cvf'
 alias mktargz='tar cvzf'
 alias mktarbz='tar cvjf'
@@ -51,6 +56,7 @@ alias untar='tar xvf'
 alias untargz='tar xvzf'
 alias untarbz='tar xvjf'
 
+# System
 alias systemupdate='sudo apt-get update && apt-ge upgrade -y'
 alias aptsearch='sudo apt-cache search'
 alias aptshow='sudo apt-cache show'
@@ -71,7 +77,7 @@ alias gclo='git clone'
 alias gdiff='git diff'
 alias gbr='git branch'
 
-# web
+# webdev
 alias htmllines='wc -l `find . -iname "*.html"` | sort -n'
 alias phplines='wc -l `find . -iname "*.php"` | sort -n'
 alias jslines='wc -l `find . -iname "*.js"` | sort -n'
