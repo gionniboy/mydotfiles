@@ -25,6 +25,7 @@ alias df='df -Th'
 alias tree='tree -Csuh'
 alias histg='history | grep'
 alias k9='kill -9'
+alias ifconfig='/sbin/ifconfig'
 
 alias pstimes='ps -eo lstart,comm,user --sort lstart'
 alias lsofnames="lsof | awk '!/^\$/ && /\// { print $9 }' | sort -u"
