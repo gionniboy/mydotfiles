@@ -18,7 +18,10 @@ alias cd3="cd ../../.."
 alias cd4="cd ../../../.."
 alias cd5="cd ../../../../.."
 alias cd6='cd ../../../../../..'
+alias cd7='cd ../../../../../../..'
+alias cd8='cd ../../../../../../../..'
 
+alias v='vim'
 alias p='pico'
 alias tail='tail -n 50'
 alias df='df -Th'
@@ -61,8 +64,18 @@ alias untarbz='tar xvjf'
 alias systemupdate='sudo apt-get update && apt-ge upgrade -y'
 alias aptsearch='sudo apt-cache search'
 alias aptshow='sudo apt-cache show'
- 
-# git
+
+# Iptables
+alias iptlist='sudo iptables -L -n --line-numbers'
+alias iptlistin='sudo iptables -L INPUT -n --line-numbers'
+alias iptlistout='sudo iptables -L OUTPUT -n --line-numbers'
+alias iptlistfw='sudo iptables -L FORWARD -n --line-numbers'
+alias ip6tlist='sudo ip6tables -L -n --line-numbers'
+alias ip6tlistin='sudo ip6tables -L INPUT -n --line-numbers'
+alias ip6tlistout='sudo ip6tables -L OUTPUT -n --line-numbers'
+alias ip6tlistfw='sudo ip6tables -L FORWARD -n --line-numbers'
+
+# Git
 alias ga='git add'
 alias gaa='git add -A'
 alias gstat='git status'
@@ -79,6 +92,7 @@ alias gdiff='git diff'
 alias gbr='git branch'
 
 # webdev
+alias header='curl -I'
 alias htmllines='wc -l `find . -iname "*.html"` | sort -n'
 alias phplines='wc -l `find . -iname "*.php"` | sort -n'
 alias jslines='wc -l `find . -iname "*.js"` | sort -n'
