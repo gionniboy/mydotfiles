@@ -29,6 +29,7 @@ alias tree='tree -Csuh'
 alias histg='history | grep'
 alias k9='kill -9'
 alias ifconfig='/sbin/ifconfig'
+alias wget='wget -c'
 
 alias pstimes='ps -eo lstart,comm,user --sort lstart'
 alias lsofnames="lsof | awk '!/^\$/ && /\// { print $9 }' | sort -u"
@@ -61,7 +62,9 @@ alias untargz='tar xvzf'
 alias untarbz='tar xvjf'
 
 # System
-alias systemupdate='sudo apt-get update && apt-ge upgrade -y'
+alias systemupdate='sudo apt-get update && sudo apt-get upgrade'
+alias aptdistupg='sudo apt-get dist-upgrade'
+alias aptautoremove='sudo apt-get autoremove'
 alias aptsearch='sudo apt-cache search'
 alias aptshow='sudo apt-cache show'
 
@@ -88,7 +91,6 @@ alias gdif='git diff'
 alias gpul='git pull'
 alias gls='git ls-files'
 alias gclo='git clone'
-alias gdiff='git diff'
 alias gbr='git branch'
 
 # webdev
