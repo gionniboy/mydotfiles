@@ -182,11 +182,6 @@ if [ -f ~/.git-prompt ]; then
     . ~/.git-prompt
 fi
 
-# GIT completion
-if [ -f ~/.git-completion ]; then
-    . ~/.git-completion
-fi
-
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
