@@ -42,6 +42,7 @@ alias bootmsg="sudo sed 's/\^\[/\o33/g;s/\[1G\[/\[27G\[/' /var/log/boot"
 alias bigfiles="sudo du -h -d 5 / | grep '[0-9]G'"
 alias mostused='cut -f1 -d" " ~/.bash_history| sort | uniq -c | sort -nr | head -n 10'
 alias openports='sudo netstat -nape --inet'
+alias ssrt='sudo ss -stplu'
 alias dirtypage='grep -C 1 dirty /proc/vmstat'
 alias ducks='du -chs * | sort -rn | head -n 11'
 alias totalconn="netstat -nt | awk '/^tcp/ {++state[$NF]} END {for(key in state) print key,"\t",state[key]}'"
