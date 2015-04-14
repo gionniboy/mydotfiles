@@ -2,7 +2,7 @@
 
 # Gionni Firegarden firegarden@autistici.org
 # 10/2014
-# Post-installation script to personalize quickly personal bash files
+# Post-installation script to personalize quickly shell files
 # and something else ...
 
 # some var to personalize during the execution
@@ -23,13 +23,13 @@ sleep .5s
 
 echo -e "Creating ~/bin folder, if not already there... \n"
 if [ ! -d "~/bin" ]; then
-    mkdir "~/bin"
+    mkdir ~/bin
 fi
 sleep .5
 
 echo -e "making the .ssh dir, if not already there... \n"
 if [ ! -d "~/.ssh" ]; then
-    mkdir "~/.ssh"
+    mkdir ~/.ssh
 fi
 sleep .5
 
@@ -45,11 +45,11 @@ cp config/.dircolors2 ~/
 cp config/.git-prompt ~/
 cp config/.gitignore ~/
 cp config/.vimrc ~/
-cp config/.tmux-conf ~/
+cp config/.tmux.conf ~/
 
 sleep .5
 
-echo -e "sourcing bash profile to reload settings... \n"
+echo -e "Sourcing bash profile to reload settings... \n"
 source ~/.bashrc
 sleep .5
 
