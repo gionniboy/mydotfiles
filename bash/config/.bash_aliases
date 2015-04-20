@@ -79,6 +79,14 @@ alias ip6tlistin='sudo ip6tables -L INPUT -n --line-numbers'
 alias ip6tlistout='sudo ip6tables -L OUTPUT -n --line-numbers'
 alias ip6tlistfw='sudo ip6tables -L FORWARD -n --line-numbers'
 
+# Dm-crypt and luks
+alias cslO='sudo crypsetup luksOpen'
+alias cslC='sudo cryptsetyp luksClose'
+alias cslAK='sudo cryptsetup luksAddKey'
+alias csst='sudo cryptsetup status'
+alias cslHB='sudo cryptsetup luksHeaderBackup'
+alias cslKS='sudo cryptsetup luksKillSlot'
+
 # Git
 alias gin='git init'
 alias ga='git add'
