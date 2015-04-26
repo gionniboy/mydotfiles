@@ -131,12 +131,12 @@ fi
 #unset color_prompt force_color_prompt
 
 # GIT PROMPT added
-export PS1=$BIBlue$User@$Host$Color_Off'$(git branch &>/dev/null;\
+export PS1=$BIGreen$User@$Host$Color_Off'$(git branch &>/dev/null;\
 if [ $? -eq 0 ]; then \
   echo "$(echo `git status` | grep "nothing to commit" > /dev/null 2>&1; \
   if [ "$?" -eq "0" ]; then \
     # @4 - Clean repository - nothing to commit
-    echo "'$Green'"$(__git_ps1 " (%s)"); \
+    echo "'$Blue'"$(__git_ps1 " (%s)"); \
   else \
     # @5 - Changes to working tree
     echo "'$IRed'"$(__git_ps1 " {%s}"); \
