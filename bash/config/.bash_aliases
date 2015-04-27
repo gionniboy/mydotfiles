@@ -32,19 +32,18 @@ alias ifconfig='/sbin/ifconfig'
 alias wget='wget -c'
 
 alias pstimes='ps -eo lstart,comm,user --sort lstart'
-alias lsofnames="lsof | awk '!/^\$/ && /\// { print $9 }' | sort -u"
 alias topcpu="ps -e -o pcpu,nice,state,cputime,args --sort pcpu | sed '/^ 0.0 /d' | pr -TW$COLUMNS"
 alias topten="ps -eo pcpu,pid,state,nice,user,args | sort -k1 -r | head -n10"
 alias topmemrss="ps -e -orss=,args= | sort -b -k1,1n | pr -TW$COLUMNS"
 alias meminfo="echo -e '/proc/meminfo:\n'; grep --color=auto '^[Mem|Swap]*[Free|Total]*:' /proc/meminfo && echo -e '\nfree -m:'; free -m"
 alias todaylog="sudo ls -ld --sort=time `sudo find /var/log -type f -daystart -ctime 0 | sed -r 's/^.*\.([0-9]+|old|gz)$//g'`"
 alias bootmsg="sudo sed 's/\^\[/\o33/g;s/\[1G\[/\[27G\[/' /var/log/boot"
-alias bigfiles="sudo du -h -d 5 / | grep '[0-9]G'"
 alias mostused='cut -f1 -d" " ~/.bash_history| sort | uniq -c | sort -nr | head -n 10'
-alias openports='sudo netstat -nape --inet'
 alias ssrt='sudo ss -stplu'
 alias dirtypage='grep -C 1 dirty /proc/vmstat'
+alias bigfiles="sudo du -h -d 5 / | grep '[0-9]G'"
 alias ducks='du -chs * | sort -rn | head -n 11'
+alias openports='sudo netstat -nape --inet'
 alias totalconn="netstat -nt | awk '/^tcp/ {++state[$NF]} END {for(key in state) print key,"\t",state[key]}'"
 
 alias myip='curl http://myexternalip.com/raw'

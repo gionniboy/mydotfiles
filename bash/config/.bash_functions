@@ -17,6 +17,27 @@ tarls()
   tar -tvf ${file} | awk '{ print $1"\t"$3"\t"$6 }'
 }
 
+# Searching with find, easily
+# ff:  to find a file under the current directory
+ff () 
+	{ /usr/bin/find . -name "$@" ;
+}
+
+# ffst: to find a file whose name starts with a given string
+ffst () 
+	{ /usr/bin/find . -name "$@"'*' ;
+}
+
+# ffend: to find a file whose name ends with a given string
+ffend () 
+	{ /usr/bin/find . -name '*'"$@" ;
+}
+
+# flarge: find files larger than a certain size (in bytes)
+flage() 
+	{ find . -type f -size +${1}c ;
+}
+
 # Process grep function
 psgrep()
         { ps aux | grep $1 | grep -v grep
@@ -40,6 +61,11 @@ myps()
 # Sanitize permission of a directory (and all files in)
 sanitize()
         { chmod -R u=rwX,g=rX,o= "$@" ;
+}
+
+# showalias: to remind yourself about alias
+showalias () 
+	{ grep -i -a1 $@ ~/.bash_aliases | grep -v '^\s*$' ;
 }
 
 # DiskFree alternative way
