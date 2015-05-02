@@ -32,18 +32,19 @@ alias ifconfig='/sbin/ifconfig'
 alias wget='wget -c'
 
 alias pstimes='ps -eo lstart,comm,user --sort lstart'
+alias lsofnames="lsof | awk '!/^\$/ && /\// { print $9 }' | sort -u"
 alias topcpu="ps -e -o pcpu,nice,state,cputime,args --sort pcpu | sed '/^ 0.0 /d' | pr -TW$COLUMNS"
 alias topten="ps -eo pcpu,pid,state,nice,user,args | sort -k1 -r | head -n10"
 alias topmemrss="ps -e -orss=,args= | sort -b -k1,1n | pr -TW$COLUMNS"
 alias meminfo="echo -e '/proc/meminfo:\n'; grep --color=auto '^[Mem|Swap]*[Free|Total]*:' /proc/meminfo && echo -e '\nfree -m:'; free -m"
 alias todaylog="sudo ls -ld --sort=time `sudo find /var/log -type f -daystart -ctime 0 | sed -r 's/^.*\.([0-9]+|old|gz)$//g'`"
 alias bootmsg="sudo sed 's/\^\[/\o33/g;s/\[1G\[/\[27G\[/' /var/log/boot"
+alias bigfiles="sudo du -h -d 5 / | grep '[0-9]G'"
 alias mostused='cut -f1 -d" " ~/.bash_history| sort | uniq -c | sort -nr | head -n 10'
+alias openports='sudo netstat -nape --inet'
 alias ssrt='sudo ss -stplu'
 alias dirtypage='grep -C 1 dirty /proc/vmstat'
-alias bigfiles="sudo du -h -d 5 / | grep '[0-9]G'"
 alias ducks='du -chs * | sort -rn | head -n 11'
-alias openports='sudo netstat -nape --inet'
 alias totalconn="netstat -nt | awk '/^tcp/ {++state[$NF]} END {for(key in state) print key,"\t",state[key]}'"
 
 alias myip='curl http://myexternalip.com/raw'
@@ -78,13 +79,10 @@ alias ip6tlistin='sudo ip6tables -L INPUT -n --line-numbers'
 alias ip6tlistout='sudo ip6tables -L OUTPUT -n --line-numbers'
 alias ip6tlistfw='sudo ip6tables -L FORWARD -n --line-numbers'
 
-# Dm-crypt and luks
-alias cslO='sudo crypsetup luksOpen'
-alias cslC='sudo cryptsetyp luksClose'
-alias cslAK='sudo cryptsetup luksAddKey'
-alias csst='sudo cryptsetup status'
-alias cslHB='sudo cryptsetup luksHeaderBackup'
-alias cslKS='sudo cryptsetup luksKillSlot'
+# Network
+alias ifaceup='ip -o link | grep UP | cut -f2 -d: | grep -v lo'
+alias pktrace='sudo tcpflow -i `ifaceup` -c'
+alias lsock='lsof -i -P'
 
 # Git
 alias gin='git init'
@@ -114,7 +112,7 @@ alias gshone='git show --oneline'
 alias gshofull='git show --pretty=full'
 
 # webdev
-alias header='curl -I'
+alias header='curl -I -L'
 alias headergz='curl -I --compress'
 alias htmllines='wc -l `find . -iname "*.html"` | sort -n'
 alias phplines='wc -l `find . -iname "*.php"` | sort -n'
