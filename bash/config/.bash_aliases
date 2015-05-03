@@ -84,6 +84,14 @@ alias ifaceup='ip -o link | grep UP | cut -f2 -d: | grep -v lo'
 alias pktrace='sudo tcpflow -i `ifaceup` -c'
 alias lsock='lsof -i -P'
 
+# Dm-crypt and luks
+alias cslO='sudo crypsetup luksOpen'
+alias cslC='sudo cryptsetyp luksClose'
+alias cslAK='sudo cryptsetup luksAddKey'
+alias csst='sudo cryptsetup status' 	
+alias cslHB='sudo cryptsetup luksHeaderBackup' 	
+alias cslKS='sudo cryptsetup luksKillSlot'
+
 # Git
 alias gin='git init'
 alias ga='git add'
