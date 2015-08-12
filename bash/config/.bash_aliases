@@ -119,6 +119,13 @@ alias gsho='git show'
 alias gshone='git show --oneline'
 alias gshofull='git show --pretty=full'
 
+#Vagrant
+alias vgr="vagrant"
+alias vgrst="vagrant status"
+alias vgrup="vagrant up"
+alias vgrhlt="vagrant halt"
+alias vgrssh="vagrant ssh"
+
 # webdev
 alias header='curl -I -L'
 alias headergz='curl -I --compress'
