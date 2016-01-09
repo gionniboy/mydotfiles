@@ -131,6 +131,11 @@ alias vreload="vagrant reload"
 alias vresume="vagrant resume"
 alias vprov="vagrant provision"
 
+#Docker
+alias docklogs="docker logs"
+alias dockpsall="docker stop $(docker ps -a -q)"
+alias dockrmall="docker rm $(docker ps -a -q)"
+
 # webdev
 alias header='curl -I -L'
 alias headergz='curl -I --compress'
