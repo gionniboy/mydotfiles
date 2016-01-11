@@ -120,21 +120,35 @@ alias gshone='git show --oneline'
 alias gshofull='git show --pretty=full'
 
 #Vagrant
-alias vinit="vagrant init"
-alias vstat="vagrant status"
-alias vup="vagrant up"
-alias vhalt="vagrant halt"
-alias vssh="vagrant ssh"
-alias vdstroy="vagrant destroy"
-alias vbox="vagrant box"
-alias vreload="vagrant reload"
-alias vresume="vagrant resume"
-alias vprov="vagrant provision"
+alias vinit='vagrant init'
+alias vstat='vagrant status'
+alias vup='vagrant up'
+alias vhalt='vagrant halt'
+alias vssh='vagrant ssh'
+alias vdstroy='vagrant destroy'
+alias vbox='vagrant box'
+alias vreload='vagrant reload'
+alias vresume='vagrant resume'
+alias vprov='vagrant provision'
 
 #Docker
-alias docklogs="docker logs"
+alias dockinfo='docker info'
+alias docklogs='docker logs'
+alias dockv='docker version'
+alias dockps'docker ps'
+alias dockimages='docker images'
 alias dockpsall="docker stop $(docker ps -a -q)"
+alias dockstat='docker stats --no-stream'
+alias dockrmc='docker rm'
+alias dockrmi='docker rmi'
 alias dockrmall="docker rm $(docker ps -a -q)"
+alias dockvol='docker volume ls'
+alias dockeventall='docker events --since=0'
+alias dockhist='docker history'
+alias docknet='docker network ls'
+alias dockscan='docker inspect'
+alias dockdiff='docker diff'
+alias docktop='docker top'
 
 # webdev
 alias header='curl -I -L'
