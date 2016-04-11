@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# Gionni Firegarden firegarden@autistici.org
 # 10/2014
 # Post-installation script to personalize quickly shell files
 # and something else ...

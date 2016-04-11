@@ -150,6 +150,10 @@ alias dockscan='docker inspect'
 alias dockdiff='docker diff'
 alias docktop='docker top'
 
+# ELK
+alias elkprettyhealt="curl -XGET 'http://localhost:9200/_cluster/health?pretty=true'"
+alias elkshardslvl="curl -XGET 'http://localhost:9200/_cluster/health/twitter?level=shards'"
+
 # webdev
 alias header='curl -I -L'
 alias headergz='curl -I --compress'
