@@ -1,51 +1,49 @@
 # GenPasswd function
-genpasswd()
-        {
+genpasswd() {
                 local l=$1
         [ "$l" == "" ] && l=16
         tr -dc A-Za-z0-9_ < /dev/urandom | head -c ${l} | xargs
 }
 
 # Perform mkdir and cd in a single command
-mkdircd ()
-        { mkdir -p "$@" && eval cd "\"\$$#\"";
+mkdircd () { 
+	mkdir -p "$@" && eval cd "\"\$$#\"";
 }
 
 # Tar archive listing without untar
-tarls()
-	{ local file=${1}
+tarls() {
+	 local file=${1}
   tar -tvf ${file} | awk '{ print $1"\t"$3"\t"$6 }'
 }
 
 # Searching with find, easily
 # ff:  to find a file under the current directory
-ff () 
-	{ /usr/bin/find . -name "$@" ;
+ff () { 
+	/usr/bin/find . -name "$@" ;
 }
 
 # ffst: to find a file whose name starts with a given string
-ffst () 
-	{ /usr/bin/find . -name "$@"'*' ;
+ffst () { 
+	/usr/bin/find . -name "$@"'*' ;
 }
 
 # ffend: to find a file whose name ends with a given string
-ffend () 
-	{ /usr/bin/find . -name '*'"$@" ;
+ffend () {
+	 /usr/bin/find . -name '*'"$@" ;
 }
 
 # flarge: find files larger than a certain size (in bytes)
-flage() 
-	{ find . -type f -size +${1}c ;
+flage() {
+	 find . -type f -size +${1}c ;
 }
 
 # Process grep function
-psgrep()
-        { ps aux | grep $1 | grep -v grep
+psgrep() { 
+	ps aux | grep $1 | grep -v grep
 }
 
 # Process KILL function
-pskill()
-        {
+pskill() {
                 local PID
         PID=$(ps ax | grep $1 | grep -v grep | awk '{print $1}')
         echo -n "Killing $1 (process id $PID) ..."
@@ -54,18 +52,13 @@ pskill()
 }
 
 # My process
-myps()
-        { ps $@ -u $USER -o pid,%cpu,%mem,bsdtime,command ;
+myps() { 
+	ps $@ -u $USER -o pid,%cpu,%mem,bsdtime,command ;
 }
 
 # Sanitize permission of a directory (and all files in)
-sanitize()
-        { chmod -R u=rwX,g=rX,o= "$@" ;
-}
-
-# showalias: to remind yourself about alias
-showalias () 
-	{ grep -i -a1 $@ ~/.bash_aliases | grep -v '^\s*$' ;
+sanitize() {
+        chmod -R u=rwX,g=rX,o= "$@" ;
 }
 
 # DiskFree alternative way
@@ -108,8 +101,7 @@ mydf()
 #}
 
 # Remove space from file and dir names, replace it with underscore
-rmspaces()
-{
+rmspaces() {
         echo "Replacing all spaces from dir/file names with _ in 3 seconds..."
         sleep 3
    ls | while read -r FILE
@@ -119,26 +111,22 @@ rmspaces()
 }
 
 # Get md5sums of all files in current dir
-md5sumdir()
-{
+md5sumdir() {
         find * -type f -exec md5sum {} \; &> md5sum.txt && echo "Success: md5sum.txt written" || echo "Error: md5sum.txt not written"
 }
 
 # Fastly encrypt something with blowfish blow encrypt fish decrypt
-blow()
-{
+blow() {
         [ -z "$1" ] && echo 'Encrypt: blow FILE' && return 1
     openssl bf-cbc -salt -in "$1" -out "$1.bf"
 }
 
-fish()
-{
+fish() {
     openssl bf-cbc -d -salt -in "$1" -out "$2"
 }
 
 # Take a Screenshot from shell
-screenshot()
-{
+screenshot() {
         if ! which scrot &> /dev/null;
                 then
         echo "${FUNCNAME[0]}(): You must install 'scrot' first."
@@ -168,7 +156,6 @@ man() {
 }
 
 # Extract anything with one command
-
 extract () {
     if [ -f $1 ]; then
         case $1 in
@@ -193,3 +180,16 @@ extract () {
         echo "$1 is not a valid file"
     fi
 }
+
+# meteo
+meteo() {
+	curl http://wttr.in/$1
+}
+
+# memcpu
+memcpu() { 
+	echo "*** Top 10 cpu eating process ***"; ps auxf | sort -nr -k 3 | head -10;
+	echo  "*** Top 10 memory eating process ***"; ps auxf | sort -nr -k 4 | head -10;  
+}
+
+
