@@ -192,4 +192,11 @@ memcpu() {
 	echo  "*** Top 10 memory eating process ***"; ps auxf | sort -nr -k 4 | head -10;  
 }
 
-
+# transfer.sh https://github.com/dutchcoders/transfer.sh/
+transfer() {
+    # write to output to tmpfile because of progress bar
+    tmpfile=$( mktemp -t transferXXX )
+    curl --progress-bar --upload-file $1 https://transfer.sh/$(basename $1) >> $tmpfile;
+    cat $tmpfile;
+    rm -f $tmpfile;
+}

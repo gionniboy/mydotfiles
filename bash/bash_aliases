@@ -30,6 +30,7 @@ alias histg='history | grep'
 alias k9='kill -9'
 alias ifconfig='/sbin/ifconfig'
 alias wget='wget -c'
+alias myip='curl http://myexternalip.com/raw'
 
 alias pstimes='ps -eo lstart,comm,user --sort lstart'
 alias lsofnames="lsof | awk '!/^\$/ && /\// { print $9 }' | sort -u"
@@ -46,8 +47,10 @@ alias ssrt='sudo ss -stplu'
 alias dirtypage='grep -C 1 dirty /proc/vmstat'
 alias ducks='du -chs * | sort -rn | head -n 11'
 alias totalconn="netstat -nt | awk '/^tcp/ {++state[$NF]} END {for(key in state) print key,"\t",state[key]}'"
-
-alias myip='curl http://myexternalip.com/raw'
+alias syncswap='sudo sync && sudo swapoff -a && echo OFF && sudo swapon -a && echo ON'
+alias dropcache1='echo 1 | sudo tee /proc/sys/vm/drop_caches'
+alias dropcache2='echo 2 | sudo tee /proc/sys/vm/drop_caches'
+alias dropcache3='echo 3 | sudo tee /proc/sys/vm/drop_caches'
 
 # Bash pastebin
 alias sprungeout="curl -F 'sprunge=<-' http://sprunge.us"
