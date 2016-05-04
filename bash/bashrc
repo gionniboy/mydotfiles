@@ -4,6 +4,11 @@
 # Bunch-o-predefined colors. Makes reading code easier than escape sequences.
 # and some variables
 
+# History customization
+HISTCONTROL=ignoreboth
+HISTSIZE=1000
+HISTFILESIZE=1000
+
 # Reset
 Color_Off="\[\033[0m\]" # Text Reset
 
