@@ -1,17 +1,20 @@
+# bash super alias
+
 alias reload='source ~/.bashrc'
 
 alias ls='ls --color=auto'
 alias dir='dir --color=auto'
 alias vdir='vdir --color=auto'
-alias grep='grep --color=auto'
-alias fgrep='fgrep --color=auto'
-alias egrep='egrep --color=auto'
 alias ll='ls -l'
 alias la='ls -A'
 alias l='ls -CF'
 alias lla='ls -la'
 
-# move fastly
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+
+# move fastly [TODO: write better, with a cycle maybe]
 alias ..='cd ..'
 alias cd2="cd ../.."
 alias cd3="cd ../../.."
@@ -28,33 +31,43 @@ alias df='df -Th'
 alias tree='tree -Csuh'
 alias histg='history | grep'
 alias k9='kill -9'
-alias ifconfig='/sbin/ifconfig'
 alias wget='wget -c'
 alias myip='curl http://myexternalip.com/raw'
 
 alias pstimes='ps -eo lstart,comm,user --sort lstart'
-alias lsofnames="lsof | awk '!/^\$/ && /\// { print $9 }' | sort -u"
 alias topcpu="ps -e -o pcpu,nice,state,cputime,args --sort pcpu | sed '/^ 0.0 /d' | pr -TW$COLUMNS"
 alias topten="ps -eo pcpu,pid,state,nice,user,args | sort -k1 -r | head -n10"
 alias topmemrss="ps -e -orss=,args= | sort -b -k1,1n | pr -TW$COLUMNS"
+#alias ps aux | awk '{if ($1 == "gionni") print $2}'  ADD PARAMETER TO CHOOSE USER
+#alias topmemhuman="ps -eo size,pid,user,command --sort -size | awk '{ hr=$1/1024 ; printf("%13.2f Mb ",hr) } { for ( x=4 ; x<=NF ; x++ ) { printf("%s ",$x) } print "" }' "
+
+alias lsofnames="lsof | awk '!/^\$/ && /\// { print $9 }' | sort -u"
 alias meminfo="echo -e '/proc/meminfo:\n'; grep --color=auto '^[Mem|Swap]*[Free|Total]*:' /proc/meminfo && echo -e '\nfree -m:'; free -m"
 alias todaylog="sudo ls -ld --sort=time `sudo find /var/log -type f -daystart -ctime 0 | sed -r 's/^.*\.([0-9]+|old|gz)$//g'`"
 alias bootmsg="sudo sed 's/\^\[/\o33/g;s/\[1G\[/\[27G\[/' /var/log/boot"
 alias bigfiles="sudo du -h -d 5 / | grep '[0-9]G'"
 alias mostused='cut -f1 -d" " ~/.bash_history| sort | uniq -c | sort -nr | head -n 10'
-alias openports='sudo netstat -nape --inet'
-alias ssrt='sudo ss -stplu'
 alias dirtypage='grep -C 1 dirty /proc/vmstat'
 alias ducks='du -chs * | sort -rn | head -n 11'
-alias totalconn="netstat -nt | awk '/^tcp/ {++state[$NF]} END {for(key in state) print key,"\t",state[key]}'"
 alias syncswap='sudo sync && sudo swapoff -a && echo OFF && sudo swapon -a && echo ON'
+
+# Network
+alias ifaceup='ip -o link | grep UP | cut -f2 -d: | grep -v lo'
+alias pkTrace='sudo tcpflow -i `ifaceup` -c'
+alias lsock='lsof -i -P'
+alias openports='sudo netstat -nape --inet'
+alias totalconn="netstat -nt | awk '/^tcp/ {++state[$NF]} END {for(key in state) print key,"\t",state[key]}'"
+alias ssrt='sudo ss -stplu'
+# netstat -nt | awk '/^tcp/ {++state[$NF]} END {for(key in state) print key,"\t",state[key]}'
+
+# DropCaches
 alias dropcache1='echo 1 | sudo tee /proc/sys/vm/drop_caches'
 alias dropcache2='echo 2 | sudo tee /proc/sys/vm/drop_caches'
 alias dropcache3='echo 3 | sudo tee /proc/sys/vm/drop_caches'
 
 # Bash pastebin
 alias sprungeout="curl -F 'sprunge=<-' http://sprunge.us"
-alias aringaout="curl -F 'aringa=<-' arin.ga"
+alias aringaout="curl -F 'aringa=<-' http://arin.ga"
 
 # Archive
 alias mktar='tar cvf'
@@ -65,14 +78,14 @@ alias untar='tar xvf'
 alias untargz='tar xvzf'
 alias untarbz='tar xvjf'
 
-# System
+# APT
 alias systemupdate='sudo apt-get update && sudo apt-get upgrade'
 alias aptdistupg='sudo apt-get dist-upgrade'
 alias aptautoremove='sudo apt-get autoremove'
 alias aptsearch='sudo apt-cache search'
 alias aptshow='sudo apt-cache show'
 
-# Iptables
+# IpTables
 alias iptlist='sudo iptables -L -n --line-numbers'
 alias iptlistin='sudo iptables -L INPUT -n --line-numbers'
 alias iptlistout='sudo iptables -L OUTPUT -n --line-numbers'
@@ -81,11 +94,6 @@ alias ip6tlist='sudo ip6tables -L -n --line-numbers'
 alias ip6tlistin='sudo ip6tables -L INPUT -n --line-numbers'
 alias ip6tlistout='sudo ip6tables -L OUTPUT -n --line-numbers'
 alias ip6tlistfw='sudo ip6tables -L FORWARD -n --line-numbers'
-
-# Network
-alias ifaceup='ip -o link | grep UP | cut -f2 -d: | grep -v lo'
-alias pktrace='sudo tcpflow -i `ifaceup` -c'
-alias lsock='lsof -i -P'
 
 # Dm-crypt and luks
 alias cslO='sudo crypsetup luksOpen'
