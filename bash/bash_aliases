@@ -16,6 +16,7 @@ alias egrep='egrep --color=auto'
 
 # move fastly [TODO: write better, with a cycle maybe]
 alias ..='cd ..'
+alias cd1='cd ..'
 alias cd2="cd ../.."
 alias cd3="cd ../../.."
 alias cd4="cd ../../../.."
@@ -43,27 +44,17 @@ alias topmemrss="ps -e -orss=,args= | sort -b -k1,1n | pr -TW$COLUMNS"
 
 alias lsofnames="lsof | awk '!/^\$/ && /\// { print $9 }' | sort -u"
 alias meminfo="echo -e '/proc/meminfo:\n'; grep --color=auto '^[Mem|Swap]*[Free|Total]*:' /proc/meminfo && echo -e '\nfree -m:'; free -m"
-alias todaylog="sudo ls -ld --sort=time `sudo find /var/log -type f -daystart -ctime 0 | sed -r 's/^.*\.([0-9]+|old|gz)$//g'`"
-alias bootmsg="sudo sed 's/\^\[/\o33/g;s/\[1G\[/\[27G\[/' /var/log/boot"
-alias bigfiles="sudo du -h -d 5 / | grep '[0-9]G'"
 alias mostused='cut -f1 -d" " ~/.bash_history| sort | uniq -c | sort -nr | head -n 10'
 alias dirtypage='grep -C 1 dirty /proc/vmstat'
 alias ducks='du -chs * | sort -rn | head -n 11'
-alias syncswap='sudo sync && sudo swapoff -a && echo OFF && sudo swapon -a && echo ON'
+
 
 # Network
 alias ifaceup='ip -o link | grep UP | cut -f2 -d: | grep -v lo'
-alias pkTrace='sudo tcpflow -i `ifaceup` -c'
 alias lsock='lsof -i -P'
-alias openports='sudo netstat -nape --inet'
+alias openports='netstat -nape --inet'
 alias totalconn="netstat -nt | awk '/^tcp/ {++state[$NF]} END {for(key in state) print key,"\t",state[key]}'"
-alias ssrt='sudo ss -stplu'
 # netstat -nt | awk '/^tcp/ {++state[$NF]} END {for(key in state) print key,"\t",state[key]}'
-
-# DropCaches
-alias dropcache1='echo 1 | sudo tee /proc/sys/vm/drop_caches'
-alias dropcache2='echo 2 | sudo tee /proc/sys/vm/drop_caches'
-alias dropcache3='echo 3 | sudo tee /proc/sys/vm/drop_caches'
 
 # Bash pastebin
 alias sprungeout="curl -F 'sprunge=<-' http://sprunge.us"
@@ -78,39 +69,11 @@ alias untar='tar xvf'
 alias untargz='tar xvzf'
 alias untarbz='tar xvjf'
 
-# APT
-alias systemupdate='sudo apt-get update && sudo apt-get upgrade'
-alias aptdistupg='sudo apt-get dist-upgrade'
-alias aptautoremove='sudo apt-get autoremove'
-alias aptsearch='sudo apt-cache search'
-alias aptshow='sudo apt-cache show'
-
-# IpTables
-alias iptlist='sudo iptables -L -n --line-numbers'
-alias iptlistin='sudo iptables -L INPUT -n --line-numbers'
-alias iptlistout='sudo iptables -L OUTPUT -n --line-numbers'
-alias iptlistfw='sudo iptables -L FORWARD -n --line-numbers'
-alias ip6tlist='sudo ip6tables -L -n --line-numbers'
-alias ip6tlistin='sudo ip6tables -L INPUT -n --line-numbers'
-alias ip6tlistout='sudo ip6tables -L OUTPUT -n --line-numbers'
-alias ip6tlistfw='sudo ip6tables -L FORWARD -n --line-numbers'
-
-# Dm-crypt and luks
-alias cslO='sudo crypsetup luksOpen'
-alias cslC='sudo cryptsetyp luksClose'
-alias cslAK='sudo cryptsetup luksAddKey'
-alias csst='sudo cryptsetup status' 	
-alias cslHB='sudo cryptsetup luksHeaderBackup' 	
-alias cslKS='sudo cryptsetup luksKillSlot'
-
 # Git
 alias gin='git init'
 alias ga='git add'
 alias gaa='git add -A'
 alias gstat='git status'
-alias glo='git log'
-alias glog='git log --graph'
-alias glone='git log --oneline'
 alias gcm='git commit -m'
 alias gcam='git commit -a -m'
 alias gcaame='git commit -a --amend'
@@ -129,6 +92,11 @@ alias gfsck='git fsck'
 alias gsho='git show'
 alias gshone='git show --oneline'
 alias gshofull='git show --pretty=full'
+alias glo='git log'
+alias glog='git log --graph'
+alias glone='git log --oneline'
+alias gitlogfull='git log --graph --full-history --all --color --pretty=format:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s"'
+alias gitlogoneline="git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 
 #Vagrant
 alias vinit='vagrant init'
@@ -173,3 +141,42 @@ alias phplines='wc -l `find . -iname "*.php"` | sort -n'
 alias jslines='wc -l `find . -iname "*.js"` | sort -n'
 alias sasslines='wc -l `find . -iname "*.scss"` | sort -n'
 alias csslines='wc -l `find . -iname "*.css"` | sort -n'
+alias pylines='wc -l `find . -iname "*.py"` | sort -n'
+
+# root command - by sudo
+if [ $UID -ne 0 ]; then
+#
+    alias todaylog="sudo ls -ld --sort=time `sudo find /var/log -type f -daystart -ctime 0 | sed -r 's/^.*\.([0-9]+|old|gz)$//g'`"
+    alias bootmsg="sudo sed 's/\^\[/\o33/g;s/\[1G\[/\[27G\[/' /var/log/boot"
+    alias syncswap='sudo sync && sudo swapoff -a && echo OFF && sudo swapon -a && echo ON'
+    alias ssrt='sudo ss -stplu'
+    alias bigfiles="sudo du -h -d 5 / | grep '[0-9]G'"
+# DropCaches
+    alias dropcache1='echo 1 | sudo tee /proc/sys/vm/drop_caches'
+    alias dropcache2='echo 2 | sudo tee /proc/sys/vm/drop_caches'
+    alias dropcache3='echo 3 | sudo tee /proc/sys/vm/drop_caches'
+# APT
+    alias systemupdate='sudo apt-get update && sudo apt-get upgrade'
+    alias aptdistupg='sudo apt-get dist-upgrade'
+    alias aptautoremove='sudo apt-get autoremove'
+    alias aptsearch='sudo apt-cache search'
+    alias aptshow='sudo apt-cache show'
+
+# IpTables
+    alias iptlist='sudo iptables -L -n --line-numbers'
+    alias iptlistin='sudo iptables -L INPUT -n --line-numbers'
+    alias iptlistout='sudo iptables -L OUTPUT -n --line-numbers'
+    alias iptlistfw='sudo iptables -L FORWARD -n --line-numbers'
+    alias iptlistnat='sudo iptables -t nat -L -n --line-numbers'
+    alias ip6tlist='sudo ip6tables -L -n --line-numbers'
+    alias ip6tlistin='sudo ip6tables -L INPUT -n --line-numbers'
+    alias ip6tlistout='sudo ip6tables -L OUTPUT -n --line-numbers'
+    alias ip6tlistfw='sudo ip6tables -L FORWARD -n --line-numbers'
+
+# Dm-crypt and luks
+    alias cslO='sudo crypsetup luksOpen'
+    alias cslC='sudo cryptsetyp luksClose'
+    alias cslAK='sudo cryptsetup luksAddKey'
+    alias csst='sudo cryptsetup status'
+    alias cslHB='sudo cryptsetup luksHeaderBackup'
+    alias cslKS='sudo cryptsetup luksKillSlot'
