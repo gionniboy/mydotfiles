@@ -144,6 +144,37 @@ alias sasslines='wc -l `find . -iname "*.scss"` | sort -n'
 alias csslines='wc -l `find . -iname "*.css"` | sort -n'
 alias pylines='wc -l `find . -iname "*.py"` | sort -n'
 
+# django
+alias djstartproject="python manage.py startproject"
+alias djstartapp="python manage.py startapp"
+alias djcreatesuperuser="python manage.py createsuperuser"
+alias djchangepassword="python manage.py changepassword"
+alias djmakemessages="python manage.py makemessages"
+alias djcompilemessages="python manage.py compilemessages"
+alias djdiffsettings="python manage.py diffsettings"
+alias djmakemigrations="python manage.py makemigrations"
+alias djmigrate="python manage.py migrate"
+alias djsqlmigrate="python manage.py sqlmigrate"
+alias djshowmigrations="python manage.py showmigrations"
+alias djsquashmigrations="python manage.py squashmigrations"
+alias djsqlflush="python manage.py sqlflush"
+alias djflush="python manage.py flush"
+alias djsqlsequencereset="python manage.py sqlsequencereset"
+alias djloaddata="python manage.py loaddata"
+alias djdumpdata="python manage.py dumpdata"
+alias djinspectdb="python manage.py inspectdb"
+alias djcreatecachetable="python manage.py createcachetable"
+alias djclearsessions="python manage.py clearsessions"
+alias djrunserver="python manage.py runserver"
+alias djfindstatic="python manage.py findstatic"
+alias djcollectstatic="python manage.py collectstatic"
+alias djdbshell="python manage.py dbshell"
+alias djshell="python manage.py shell"
+alias djsendtestemail="python manage.py sendtestemail"
+alias djcheck="python manage.py check"
+alias djtestserver="python manage.py testserver"
+alias djtest="python manage.py test"
+
 # root command - by sudo
 if [ $UID -ne 0 ]; then
 #
