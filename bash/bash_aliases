@@ -34,6 +34,7 @@ alias histg='history | grep'
 alias k9='kill -9'
 alias wget='wget -c'
 alias myip='curl http://myexternalip.com/raw'
+alias py='python'
 
 alias pstimes='ps -eo lstart,comm,user --sort lstart'
 alias topcpu="ps -e -o pcpu,nice,state,cputime,args --sort pcpu | sed '/^ 0.0 /d' | pr -TW$COLUMNS"
@@ -111,23 +112,23 @@ alias vresume='vagrant resume'
 alias vprov='vagrant provision'
 
 #Docker
-alias dockinfo='docker info'
-alias docklogs='docker logs'
-alias dockv='docker version'
-alias dockps'docker ps'
-alias dockimages='docker images'
-alias dockpsall="docker stop $(docker ps -a -q)"
-alias dockstat='docker stats --no-stream'
-alias dockrmc='docker rm'
-alias dockrmi='docker rmi'
-alias dockrmall="docker rm $(docker ps -a -q)"
-alias dockvol='docker volume ls'
-alias dockeventall='docker events --since=0'
-alias dockhist='docker history'
-alias docknet='docker network ls'
-alias dockscan='docker inspect'
-alias dockdiff='docker diff'
-alias docktop='docker top'
+# alias dockinfo='docker info'
+# alias docklogs='docker logs'
+# alias dockv='docker version'
+# alias dockps'docker ps'
+# alias dockimages='docker images'
+# alias dockpsall="docker stop $(docker ps -a -q)"
+# alias dockstat='docker stats --no-stream'
+# alias dockrmc='docker rm'
+# alias dockrmi='docker rmi'
+# alias dockrmall="docker rm $(docker ps -a -q)"
+# alias dockvol='docker volume ls'
+# alias dockeventall='docker events --since=0'
+# alias dockhist='docker history'
+# alias docknet='docker network ls'
+# alias dockscan='docker inspect'
+# alias dockdiff='docker diff'
+# alias docktop='docker top'
 
 # ELK
 alias elkprettyhealt="curl -XGET 'http://localhost:9200/_cluster/health?pretty=true'"
@@ -180,3 +181,4 @@ if [ $UID -ne 0 ]; then
     alias csst='sudo cryptsetup status'
     alias cslHB='sudo cryptsetup luksHeaderBackup'
     alias cslKS='sudo cryptsetup luksKillSlot'
+fi
