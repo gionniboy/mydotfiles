@@ -144,6 +144,12 @@ alias sasslines='wc -l `find . -iname "*.scss"` | sort -n'
 alias csslines='wc -l `find . -iname "*.css"` | sort -n'
 alias pylines='wc -l `find . -iname "*.py"` | sort -n'
 
+# virtualenv
+alias venvnositepkg='virtualenv --no-site-packages'
+alias venvsyssitepkg--system-site-packages='virtualenv --system-site-packages'
+alias venvactivate='source bin/activate'
+alias venvclear='virtualenv --clear'
+
 # django
 alias djstartproject="python manage.py startproject"
 alias djstartapp="python manage.py startapp"
