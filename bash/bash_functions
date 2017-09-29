@@ -126,13 +126,14 @@ md5sumdir() {
         find * -type f -exec md5sum {} \; &> md5sum.txt && echo "Success: md5sum.txt written" || echo "Error: md5sum.txt not written"
 }
 
-# Fastly encrypt something with blowfish blow encrypt fish decrypt
-blow() {
+# Fastly encrypt something with blowfish blow crypt fish decrypt
+# FIX: fish shell if installed collide with this alias
+blow_crypt() {
         [ -z "$1" ] && echo 'Encrypt: blow FILE' && return 1
     openssl bf-cbc -salt -in "$1" -out "$1.bf"
 }
 
-fish() {
+fish_decrypt() {
     openssl bf-cbc -d -salt -in "$1" -out "$2"
 }
 
