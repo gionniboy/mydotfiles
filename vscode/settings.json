@@ -1,0 +1,43 @@
+{
+    // General settings
+    "window.zoomLevel": 1,
+    "window.restoreFullscreen": true,
+    "window.openFilesInNewWindow": "off",
+    "editor.renderWhitespace": "all",
+    "files.trimTrailingWhitespace": true,
+    "files.encoding": "utf8",
+    "files.autoSave": "afterDelay",
+    "editor.insertSpaces": true,
+    "editor.renderControlCharacters": true,
+    "editor.renderIndentGuides": true,
+    "editor.multiCursorModifier": "ctrlCmd",
+    "editor.formatOnPaste": true,
+    "editor.quickSuggestions": {
+        "other": true,
+        "comments": false,
+        "strings": false
+    },
+    "editor.suggestOnTriggerCharacters": true,
+    "extensions.ignoreRecommendations": true,
+    "atomKeymap.promptV3Features": true,
+    "workbench.statusBar.visible": true,
+    // PHP settings
+    // Avoid duplication of hints
+    "php.suggest.basic": false,
+    // Enable/disable built-in PHP validation.
+    "php.validate.enable": true,
+    // php binary
+    //"php.executablePath": "/usr/local/php7/bin/php",
+    // Points to the PHP executable.
+    "php.validate.executablePath": "/usr/bin/php",
+    // Whether the linter is run on save or on type.
+    "php.validate.run": "onSave",
+    // PYTHON settings
+    // python binary based on workspace virtualenv
+    "python.pythonPath": "${workspaceRoot}/venv/bin/python",
+    // linting
+    "python.linting.enabled": true,
+    "python.linting.lintOnSave": true
+    //"python.formatting.autopep8Path": "${workspaceRoot}/venv/bin/autopep8"
+}
+
