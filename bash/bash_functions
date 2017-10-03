@@ -6,7 +6,7 @@ genpasswd() {
 }
 
 # Perform mkdir and cd in a single command
-mkdircd () { 
+mkdircd () {
 	mkdir -p "$@" && eval cd "\"\$$#\"";
 }
 
@@ -29,12 +29,12 @@ tarls() {
 
 # Searching with find, easily
 # ff:  to find a file under the current directory
-ff () { 
+ff () {
 	/usr/bin/find . -name "$@" ;
 }
 
 # ffst: to find a file whose name starts with a given string
-ffst () { 
+ffst () {
 	/usr/bin/find . -name "$@"'*' ;
 }
 
@@ -49,7 +49,7 @@ flage() {
 }
 
 # Process grep function
-psgrep() { 
+psgrep() {
 	ps aux | grep $1 | grep -v grep
 }
 
@@ -63,7 +63,7 @@ pskill() {
 }
 
 # My process
-myps() { 
+myps() {
 	ps $@ -u $USER -o pid,%cpu,%mem,bsdtime,command ;
 }
 
@@ -184,7 +184,7 @@ extract () {
             *.pax.Z)    uncompress $1 --stdout | pax -r     ;;
             *.Z)        uncompress $1                       ;;
             *.rar)      unrar e $1                          ;;
-            *.tar.xz)   tar xJf $1                          ;;  
+            *.tar.xz)   tar xJf $1                          ;;
             *.xz)       xz --decompress --verbose --keep $1 ;;
             *)          echo "$1 cannot be extracted via extract()" ;;
         esac
@@ -199,9 +199,9 @@ meteo() {
 }
 
 # memcpu
-memcpu() { 
+memcpu() {
 	echo "*** Top 10 cpu eating process ***"; ps auxf | sort -nr -k 3 | head -10;
-	echo  "*** Top 10 memory eating process ***"; ps auxf | sort -nr -k 4 | head -10;  
+	echo  "*** Top 10 memory eating process ***"; ps auxf | sort -nr -k 4 | head -10;
 }
 
 # transfer.sh https://github.com/dutchcoders/transfer.sh/
@@ -313,7 +313,15 @@ treee() {
 }
 
 # gitignore.io
-function gitignore() { 
+function gitignore() {
         curl -L -s https://www.gitignore.io/api/$@ ;
 }
 
+# salted sha pass: useful for htpasswd
+function ssha_passwd() {
+  local clear_pass
+  read -sp 'Password: ' clear_pass
+  local salt="$(openssl rand -base64 3)"
+  local ssha_pass=$(printf "${clear_pass}${salt}" |openssl dgst -binary -sha1 |sed 's#$#'"${salt}"'#' |base64);
+  echo "{SSHA}$ssha_pass"
+}
