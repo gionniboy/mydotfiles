@@ -325,3 +325,16 @@ function ssha_passwd() {
   local ssha_pass=$(printf "${clear_pass}${salt}" |openssl dgst -binary -sha1 |sed 's#$#'"${salt}"'#' |base64);
   echo "{SSHA}$ssha_pass"
 }
+
+# spinner on waiting
+spinner()
+{
+	tback="$(tput cub1)"
+	spinstr='|/-\'
+	spinpos=0
+	while true; do
+	echo -n "${spinstr:spinpos:1}$tback"
+	spinpos=$(((spinpos+1)%4))
+	done
+}
+
