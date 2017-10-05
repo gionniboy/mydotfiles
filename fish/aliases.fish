@@ -46,7 +46,7 @@ alias hosts='sudo $EDITOR /etc/hosts'
 alias push="git push"
 
 # Networking. IP address, dig, DNS
-alias ip="dig +short myip.opns.com @resolver1.opendns.com"
+alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias dig="dig +nocmd any +multiline +noall +answer"
 
 alias topmemhuman="ps -eo size,pid,user,command --sort -size |

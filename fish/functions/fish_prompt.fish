@@ -1,62 +1,45 @@
-# name: gnuykeaj
-# ---------------
-# Based on clearance, which is based off idan. 
-# 1 line minimal, beautiful version of clearance.
-# Display the following bits on the left:
-# - Virtualenv name (if applicable, see https://github.com/adambrenecki/virtualfish)
-# - Current directory name
-# - Git branch and dirty state (if inside a git repo)
-
-function _git_branch_name
-  echo (command git symbolic-ref HEAD ^/dev/null | sed -e 's|^refs/heads/||')
-end
-
-function _git_is_dirty
-  echo (command git status -s --ignore-submodules=dirty ^/dev/null)
-end
-
-function fish_prompt
-  set -l last_status $status
-
-  set -l cyan (set_color cyan)
-  set -l yellow (set_color yellow)
-  set -l red (set_color red)
-  set -l blue (set_color blue)
-  set -l green (set_color green)
-  set -l normal (set_color normal)
-
-  set -l cwd $blue(basename (pwd | sed "s:^$HOME:~:"))
-
-  # Display hostname if connected to SSH
-  if set -q SSH_CONNECTION
-      echo -n -s $yellow $USER '@' (hostname) $normal ' '
-  end
-  
-  # Display [venvname] if in a virtualenv
-  if set -q VIRTUAL_ENV
-      echo -n -s (set_color -b cyan black) '[' (basename "$VIRTUAL_ENV") ']' $normal ' '
-  end
-
-  # Print pwd or full path
-  echo -n -s $cwd $normal
-
-  # Show git branch and status
-  if [ (_git_branch_name) ]
-    set -l git_branch (_git_branch_name)
-
-    if [ (_git_is_dirty) ]
-      set git_info $yellow $git_branch "±" $normal
-    else
-      set git_info $green $git_branch $normal
+function fish_prompt --description 'Write out the prompt'
+	set laststatus $status
+    function _git_branch_name
+        echo (git symbolic-ref HEAD ^/dev/null | sed -e 's|^refs/heads/||')
     end
-    echo -n -s ' · ' $git_info $normal
-  end
-
-  set -l prompt_color $red
-  if test $last_status = 0
-    set prompt_color $normal
-  end
-
-  # Terminate with a nice prompt char
-  echo -e -n -s $prompt_color ' ⟩ ' $normal
+    function _is_git_dirty
+        echo (git status -s --ignore-submodules=dirty ^/dev/null)
+    end
+    if [ (_git_branch_name) ]
+        set -l git_branch (set_color -o blue)(_git_branch_name)
+        if [ (_is_git_dirty) ]
+            for i in (git branch -qv --no-color | string match -r '\*' | cut -d' ' -f4- | cut -d] -f1 | tr , \n)\
+ (git status --porcelain | cut -c 1-2 | uniq)
+                switch $i
+                    case "*[ahead *"
+                        set git_status "$git_status"(set_color red)⬆
+                    case "*behind *"
+                        set git_status "$git_status"(set_color red)⬇
+                    case "."
+                        set git_status "$git_status"(set_color green)✚
+                    case " D"
+                        set git_status "$git_status"(set_color red)✖
+                    case "*M*"
+                        set git_status "$git_status"(set_color green)✱
+                    case "*R*"
+                        set git_status "$git_status"(set_color purple)➜
+                    case "*U*"
+                        set git_status "$git_status"(set_color brown)═
+                    case "??"
+                        set git_status "$git_status"(set_color red)≠
+                end
+            end
+        else
+            set git_status (set_color green):
+        end
+        set git_info "(git$git_status$git_branch"(set_color white)")"
+    end
+    set_color -b black
+    printf '%s%s%s%s%s%s%s%s%s%s%s%s%s' (set_color -o white) '❰' (set_color green) $USER @ (set_color red) (prompt_hostname) (set_color white) '❙' (set_color yellow) (echo $PWD | sed -e "s|^$HOME|~|") (set_color white) $git_info (set_color white) '❱' (set_color white)
+    if test $laststatus -eq 0
+        printf "%s✔%s≻%s " (set_color -o green) (set_color white) (set_color normal)
+    else
+        printf "%s✘%s≻%s " (set_color -o red) (set_color white) (set_color normal)
+    end
 end
