@@ -1,11 +1,11 @@
 function mkdircd --description 'create dir and move into'
 	mkdir -p $argv
-    cd $argv
+  cd $argv
 end
 
 function pubkey --description "copy public ssh key"
-    cat ~/.ssh/id_rsa.pub | xsel --clipboard --input; and echo '=> Public key copied to pasteboard.'
-    xsel --clipboard --output
+  cat ~/.ssh/id_rsa.pub | xsel --clipboard --input; and echo '=> Public key copied to pasteboard.'
+  xsel --clipboard --output
 end
 
 function gitworklog --description "Show work done on current git repo today"
@@ -19,7 +19,15 @@ function gitworklog --description "Show work done on current git repo today"
 end
 
 function abspath -d 'Calculates the absolute path for the given path'
-    set -l cwd ''
-    pushd $argv[1]; and set cwd (pwd); and popd
-    echo $cwd
+  set -l cwd ''
+  pushd $argv[1]; and set cwd (pwd); and popd
+  echo $cwd
+end
+
+function k9 -d 'kill -9 the short way'
+  kill -9 $argv
+end
+
+function myip -d 'fetch public ip'
+  curl http://myexternalip.com/raw
 end

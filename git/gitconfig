@@ -37,7 +37,7 @@
 # 	changed = blue
 # 	untracked = red
 [core]
-    editor = atom --wait
+    editor = code --wait
     excludesfile = ~/.gitignore_global
     # treat spaces before tabs, lines that are indented with 8 or more spaces, and all kinds of trailing whitespace as an error
     whitespace = space-before-tab,indent-with-non-tab,trailing-space
@@ -45,56 +45,48 @@
     a = add
     co = checkout
     c = commit
-    ca = !git add -A && git commit -av
-    # credit an author on the latest commit
-    credit = "!f() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; f"
-    d = diff
-    # diff: `git di $number` shows the diff between the state `$number` revisions ago and the current state
-    di = !"d() { git diff --patch-with-stat HEAD~$1; }; git diff-index --quiet HEAD -- || clear; d"
-    l = log
     pl = pull
-    # pull including all submodules
-    ppl = !"git pull; git submodule foreach git pull origin master"
-    ps = push
-    # undo push
+    pu = push
+    plre = pull --rebase
+    cm = commit -asS
+    mr = push origin --mirror
+    psall = push --all
     undopush = push -f origin HEAD^:master
-    s = status
+    stat = status
     # show verbose output about tags, branches or remotes
-    tags = tag -l
+    tags = tag -n -l
+    lasttag = describe --tags --abbrev=0
+    br = branch
     branches = branch -a
+    branch = branch -ra
     remotes = remote -v
+    # first empty commit http://www-cs-students.stanford.edu/~blynn/gitmagic/apa.html#_initial_commit
+    empty = "!git commit -am\"[empty] Initial commit\" --allow-empty"
     # Interactive rebase with the given number of latest commits
     reb = "!r() { git rebase -i HEAD~$1; }; r"
-    st = status -s
     cl = clone
-    ci = commit -S
-    co = checkout
-    br = branch
-    r = reset
     cp = cherry-pick
     gr = grep -Ii
-    diff = diff --word-diff
-    branch = branch -ra
     grep = grep -Ii
     bra = branch -ra
     ai = add --interactive
     resign = commit --amend -S --no-edit
-    cm = commit -S -m
-    cma = commit -S -a -m
-    ca = commit -S --amend
-    amend = commit -S --amend
-    caa = commit -a --amend -C HEAD
+    showsign = show --show-signature
+    l = log
+    filelog = log -u
+    lnc = log --pretty=format:"%h\\ %s\\ [%cn]"
     ls = log --pretty=format:"%C(green)%h\\ %C(yellow)[%ad]%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative
     ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+    lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --all
     lc  = "!f() { git ll "$1"^.."$1"; }; f"
-    lnc = log --pretty=format:"%h\\ %s\\ [%cn]"
-    fl = log -u
-    filelog = log -u
+    # diff: `git diffrev $number` shows the diff between the state `$number` revisions ago and the current state
+    diffrev = !"d() { git diff --patch-with-stat HEAD~$1; }; git diff-index --quiet HEAD -- || clear; d"
     d = diff --word-diff
     dc = diff --cached
     dlc = diff --cached HEAD^
     dr  = "!f() { git diff -w "$1"^.."$1"; }; f"
     diffr  = "!f() { git diff "$1"^.."$1"; }; f"
+    df = diff --stat
     r1 = reset HEAD^
     r2 = reset HEAD^^
     rh = reset --hard
@@ -103,15 +95,12 @@
     sl = stash list
     sa = stash apply
     ss = stash save
-    lasttag = describe --tags --abbrev=0
     lt = describe --tags --abbrev=0
     ours = "!f() { git co --ours $@ && git add $@; }; f"
     theirs = "!f() { git co --theirs $@ && git add $@; }; f"
     rem="!git config -l | grep remote.*url | tail -n +2"
     lap = "!f() { git --git-dir=$1 format-patch -k -1 --stdout $2 | git am -3 -k; }; f"
-    empty = "!git commit -am\"[empty] Initial commit\" --allow-empty"
     la = "!git config -l | grep alias | cut -c 7-"
-    pl = pull --rebase
 [apply]
     # detect whitespace errors when applying a patch
     whitespace = fix
