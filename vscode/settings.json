@@ -27,9 +27,11 @@
     // Enable/disable built-in PHP validation.
     "php.validate.enable": true,
     // php binary
-    //"php.executablePath": "/usr/local/php7/bin/php",
+    //"php.executablePath": "/usr/bin/php",
+    "php.executablePath": "/usr/local/php7/bin/php",
     // Points to the PHP executable.
-    "php.validate.executablePath": "/usr/bin/php",
+    //"php.validate.executablePath": "/usr/bin/php",
+    "php.validate.executablePath": "/usr/local/php7/bin/php",
     // Whether the linter is run on save or on type.
     "php.validate.run": "onSave",
     // PYTHON settings

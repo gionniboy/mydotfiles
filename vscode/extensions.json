@@ -1,0 +1,22 @@
+{
+    "recommendations": [
+	"CoenraadS.bracket-pair-colorizer",
+	"EditorConfig.EditorConfig",
+	"HookyQR.beautify",
+	"christian-kohler.path-intellisense",
+	"donjayamanne.githistory",
+	"felixfbecker.php-debug",
+	"felixfbecker.php-intellisense",
+	"ikappas.phpcs",
+	"formulahendry.code-runner",
+	"ms-vscode.atom-keybindings",
+	"whatwedo.twig",
+	"PeterJausovec.vscode-docker",
+	"TeddyDD.fish",
+	"dbaeumer.vscode-eslint",
+	"donjayamanne.python",
+	"rubbersheep.gi"
+    ]
+}
+
+d
