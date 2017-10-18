@@ -4,9 +4,7 @@
     "window.restoreFullscreen": true,
     "window.openFilesInNewWindow": "off",
     "editor.renderWhitespace": "all",
-    "files.trimTrailingWhitespace": true,
-    "files.encoding": "utf8",
-    "files.autoSave": "afterDelay",
+    "editor.fontFamily": "Menlo",
     "editor.insertSpaces": true,
     "editor.renderControlCharacters": true,
     "editor.renderIndentGuides": true,
@@ -18,8 +16,13 @@
         "strings": false
     },
     "editor.suggestOnTriggerCharacters": true,
+    "files.trimTrailingWhitespace": true,
+    "files.encoding": "utf8",
+    "files.autoSave": "afterDelay",
     "extensions.ignoreRecommendations": true,
     "atomKeymap.promptV3Features": true,
+    "latex-workshop.chktex.enabled": true,
+    "workbench.iconTheme": "material-icon-theme",
     "workbench.statusBar.visible": true,
     // PHP settings
     // Avoid duplication of hints
@@ -27,13 +30,13 @@
     // Enable/disable built-in PHP validation.
     "php.validate.enable": true,
     // php binary
-    //"php.executablePath": "/usr/bin/php",
     "php.executablePath": "/usr/local/php7/bin/php",
-    // Points to the PHP executable.
-    //"php.validate.executablePath": "/usr/bin/php",
     "php.validate.executablePath": "/usr/local/php7/bin/php",
+    // Points to the PHP executable.
+    // "php.validate.executablePath": "/usr/bin/php",
     // Whether the linter is run on save or on type.
     "php.validate.run": "onSave",
+    "[php]": {},
     // PYTHON settings
     // python binary based on workspace virtualenv
     "python.pythonPath": "${workspaceRoot}/venv/bin/python",
