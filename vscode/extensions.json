@@ -15,8 +15,10 @@
 	"TeddyDD.fish",
 	"dbaeumer.vscode-eslint",
 	"donjayamanne.python",
-	"rubbersheep.gi"
+	"rubbersheep.gi",
+	"James-Yu.latex-workshop",
+	"PKief.material-icon-theme",
+	"akamud.vscode-theme-onedark",
+	"be5invis.vscode-icontheme-nomo-dark"
     ]
 }
-
-d
