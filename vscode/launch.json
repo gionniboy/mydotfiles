@@ -27,7 +27,6 @@
             "type": "php",
             "request": "launch",
             "log": true,
-            "localSourceRoot": "${workspaceRoot}/",
             "port": 9000
         },
         {
