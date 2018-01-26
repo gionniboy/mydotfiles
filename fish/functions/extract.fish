@@ -1,4 +1,4 @@
-function extract --description "Expand or extract bundled & compressed files"
+function extract --description "Expand or extract compressed files"
   for file in $argv
     if test -f $file
       echo -s "Extracting " (set_color --bold blue) $file (set_color normal)
