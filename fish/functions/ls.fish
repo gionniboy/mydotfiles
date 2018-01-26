@@ -21,7 +21,6 @@ if command ls --version 1>/dev/null 2>/dev/null
 					break
 				end
 			end
-			echo $colorfile
 			eval (dircolors -c $colorfile | sed 's/>&\/dev\/null$//')
 		end
 	end

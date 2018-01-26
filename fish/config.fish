@@ -7,7 +7,6 @@ end
 set -gx EDITOR "vi"
 set -gx LANG en_US.utf8
 set -gx GOPATH ~/go
-set -gx NODE_PATH ~/.node_modules_global/bin
 set -gx PATH ~/bin ~/.local/bin $PATH
 
 
@@ -20,7 +19,12 @@ set -U phpspace "$HOME/php"
 set -U kvmpool "$HOME/KVMPOOL"
 set -U vagrantpool "$HOME/VAGRANT"
 
+# load custom files
 source ~/.config/fish/aliases.fish
 source ~/.config/fish/abbreviations.fish
-source ~/.config/fish/functions.fish
+
+for val in ~/.config/fish/functions/*.fish
+  source $val
+end
+
 
