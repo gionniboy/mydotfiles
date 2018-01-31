@@ -4,6 +4,9 @@ for p in /opt/bin /opt/local/bin /usr/bin /usr/local/bin /sbin /usr/local/sbin /
     end
 end
 
+# activate virtualenvwrapper for fish shell
+eval (python3 -m virtualfish)
+
 set -gx EDITOR "vi"
 set -gx LANG en_US.utf8
 set -gx GOPATH ~/go
