@@ -42,7 +42,7 @@ end
 
 # Searching with find, easily
 function ff -d "find a file under the current directory"
-  find . -name argv[1]
+  find . -name "$argv[1]"
 end
 
 function ffstart -d "find a file start with $argv"

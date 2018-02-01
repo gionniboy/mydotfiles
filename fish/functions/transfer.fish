@@ -1,4 +1,3 @@
-
 function transfer -d "use transfer.sh to share a file"
     if test (count $argv) -eq 0
         echo "No arguments specified. Usage:\necho transfer /tmp/test.md\ncat /tmp/test.md | transfer test.md"
@@ -23,7 +22,7 @@ function transfer -d "use transfer.sh to share a file"
 
         if test -d $file
             # zip directory and transfer
-            set zipfile ( mktemp -t transferXXX.zip )
+            set zipfile (mktemp -t transferXXX.zip)
             # echo (dirname $file)
             #cd (dirname $file) and echo (pwd)
             zip -r -q - $file >> $zipfile

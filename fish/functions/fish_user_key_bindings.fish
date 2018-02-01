@@ -19,9 +19,9 @@ function bind_dollar
   end
 end
 
-# enable keybindings                                                                                                                                                                                               
+# enable keybindings
 function fish_user_key_bindings
-  bind "&&" 'commandline -i "; and"'                                                                                                                                                            
+  bind "&&" 'commandline -i "; and"'
   bind "||" 'commandline -i "; or"'
   bind ! bind_bang
   bind '$' bind_dollar
