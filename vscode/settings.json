@@ -1,48 +1,43 @@
 {
-    // General settings
-    "window.zoomLevel": 1,
     "window.restoreFullscreen": true,
+    "window.zoomLevel": 2,
     "window.openFilesInNewWindow": "off",
-    "editor.renderWhitespace": "all",
-    "editor.fontFamily": "Menlo",
-    "editor.insertSpaces": true,
-    "editor.renderControlCharacters": true,
-    "editor.renderIndentGuides": true,
+    "terminal.integrated.shell.linux": "/bin/bash",
     "editor.multiCursorModifier": "ctrlCmd",
     "editor.formatOnPaste": true,
+    "editor.renderWhitespace": "all",
+    "editor.insertSpaces": true,
+    "editor.formatOnSave": false,
+    "editor.renderControlCharacters": true,
+    "editor.tabSize": 4,
+    "editor.suggestOnTriggerCharacters": true,
     "editor.quickSuggestions": {
         "other": true,
         "comments": false,
         "strings": false
     },
-    "editor.suggestOnTriggerCharacters": true,
     "files.trimTrailingWhitespace": true,
     "files.encoding": "utf8",
     "files.autoSave": "afterDelay",
     "extensions.ignoreRecommendations": true,
     "atomKeymap.promptV3Features": true,
     "latex-workshop.chktex.enabled": true,
+    "python.autoComplete.addBrackets": true,
+    "python.linting.enabled": true,
+    "python.linting.pylintEnabled": true,
+    "python.linting.lintOnSave": true,
+    "python.formatting.provider": "autopep8",
+    "php.suggest.basic": false,
+    "php.validate.enable": true,
+    "php.executablePath": "/usr/bin/php",
+    "php.validate.executablePath": "/usr/bin/php",
+    "php.validate.run": "onSave",
+    "phpcs.standard": "PSR2",
     "workbench.iconTheme": "material-icon-theme",
     "workbench.statusBar.visible": true,
-    // PHP settings
-    // Avoid duplication of hints
-    "php.suggest.basic": false,
-    // Enable/disable built-in PHP validation.
-    "php.validate.enable": true,
-    // php binary
-    "php.executablePath": "/usr/local/php7/bin/php",
-    "php.validate.executablePath": "/usr/local/php7/bin/php",
-    // Points to the PHP executable.
-    // "php.validate.executablePath": "/usr/bin/php",
-    // Whether the linter is run on save or on type.
-    "php.validate.run": "onSave",
-    "[php]": {},
-    // PYTHON settings
-    // python binary based on workspace virtualenv
-    "python.pythonPath": "${workspaceRoot}/venv/bin/python",
-    // linting
-    "python.linting.enabled": true,
-    "python.linting.lintOnSave": true
-    //"python.formatting.autopep8Path": "${workspaceRoot}/venv/bin/autopep8"
+    "files.associations": {
+        "*.py": "python",
+        "*.php": "php",
+        "*.js": "javascript"
+    }
 }
-
