@@ -1,0 +1,20 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[dev-packages]
+pylint = "*"
+"autopep8" = "*"
+pytest = "*"
+coverage = "*"
+pytest-cov = "*"
+
+[packages]
+requests = "==2.18.4"
+
+[requires]
+python_version = "3.6"
+
+[scripts]
+tests = "time -p pytest -v --cov=./"

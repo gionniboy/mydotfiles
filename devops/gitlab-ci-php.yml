@@ -1,0 +1,110 @@
+# Define our stages
+stages:
+  - test
+  - deploy
+
+# Select what we should cache between builds
+cache:
+  key: my-little-vendor-cache
+  paths:
+  - vendor/
+
+# Template for test jobs
+.job_template: &job_definition
+  stage: test
+  services:
+    # Bring in any services we need http://docs.gitlab.com/ee/ci/docker/using_docker_images.html#what-is-a-service
+    # See http://docs.gitlab.com/ce/ci/services/README.html for examples.
+    - mariadb:10.2
+
+  variables:
+    # Configure mariadb service https://hub.docker.com/_/mariadb/
+    MYSQL_ROOT_PASSWORD: toor
+    MYSQL_DATABASE: testdb
+    MYSQL_USER: testuser
+    MYSQL_PASSWORD: testpass
+
+  # What we want execute BEFORE the jobs
+  before_script:
+    - apt-get update -yqq > /dev/null
+    - apt-get install -yqq git mysql-client >/dev/null 2>&1 &
+    # Install PHP extensions
+    - docker-php-ext-install mbstring pdo_pgsql pdo_mysql curl json intl gd xml zip bz2 opcache > /dev/null
+    # Install & enable Xdebug for code coverage reports
+    - pecl install xdebug >/dev/null
+    - docker-php-ext-enable xdebug
+    # Install and run Composer
+    - curl -sS https://getcomposer.org/installer | php
+    - php composer.phar install
+
+# # Run our tests
+# # If Xdebug was installed you can generate a coverage report and see code coverage metrics.
+# test:php7.0:
+#   <<: *job_definition
+#   stage: test
+#   # Select image from https://hub.docker.com/_/php/
+#   image: php:7.0.29
+
+#   script:
+#     - php vendor/bin/phpmd app/src text phpmd.xml
+#     - php vendor/bin/phpmetrics --report-html=build/phpmetric-report app/src
+#     - php vendor/bin/phpunit --configuration phpunit_ci.xml --coverage-text --colors=never
+
+#   allow_failure: true
+
+# If Xdebug was installed you can generate a coverage report and see code coverage metrics.
+test:php7.1:
+  <<: *job_definition
+  stage: test
+  # Select image from https://hub.docker.com/_/php/
+  image: php:7.1.16
+
+  script:
+    - php vendor/bin/phpmd app/src html phpmd.xml
+    - php vendor/bin/phpmetrics --report-html=build/phpmetric-report app/src
+    - php vendor/bin/phpunit --configuration phpunit_ci.xml --coverage-html --colors=never
+  artifacts:
+    paths:
+    - build/
+  only:
+    - master
+    - devel
+
+# # If Xdebug was installed you can generate a coverage report and see code coverage metrics.
+# test:php7.2:
+#   <<: *job_definition
+#   stage: test
+#   # Select image from https://hub.docker.com/_/php/
+#   image: php:7.2.4
+
+#   script:
+#     - php vendor/bin/phpmd app/src text phpmd.xml
+#     - php vendor/bin/phpmetrics --report-html=build/phpmetric-report app/src
+#     - php vendor/bin/phpunit --configuration phpunit_ci.xml --coverage-text --colors=never
+#   artifacts:
+#     paths:
+#     - build/
+#   allow_failure: true
+
+deploy_demo:
+  stage: deploy
+  image: debian:9.4-slim
+  script:
+    - apt-get -qq update -y > /dev/null
+    - apt-get -qq update -y
+    - apt-get -qq install -y openssh-client git > /dev/null
+    # run ssh-agent
+    - eval $(ssh-agent -s)
+    # add ssh key from ci secrets envars
+    # RSA Key
+    - ssh-add - <<<"$SSH_KEY_DEMO" > /dev/null
+    # ECDSA key
+    # - echo "$SSH_KEY_DEMO" | tr -d '\r' | ssh-add - > /dev/null
+    - ssh -o StrictHostKeyChecking=no -p $SSH_PORT_DEMO $SSH_USER_DEMO@server.onproduction.org sh deploy-demo.sh &>/dev/null
+    - echo yay
+  environment:
+    name: demo
+    url: https://server.onproduction.org
+  # when: manual
+  only:
+  - master
