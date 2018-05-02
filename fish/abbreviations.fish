@@ -10,9 +10,6 @@ abbr -a untar tar xvf
 abbr -a untargz tar xvzf
 abbr -a untarbz tar xvjf
 
-# git
-abbr -a gco git checkout
-
 # listing
 abbr -a dir dir --color=auto
 abbr -a vdir vidr --color=auto
@@ -39,16 +36,13 @@ abbr -a lsock 'lsof -i -P'
 abbr -a openports 'netstat -nape --inet'
 
 # shortcuts
-abbr -a v vi
-abbr -a g git
-abbr -a gti git
+
 abbr -a tail tail -n 50
-abbr -a df df -Th
 abbr -a tree tree -Csuh
 abbr -a histg 'history | grep'
 abbr -a wget wget -c
 abbr -a pygcat 'pygmentize -O style=monokai -f console256 -g'
-abbr -a c code
+
 abbr -a hosts 'sudo $EDITOR /etc/hosts'
 abbr -a push 'git push'
 abbr -a mostused 'cut -f1 -d" " ~/.bash_history| sort | uniq -c | sort -nr | head -n 10'
